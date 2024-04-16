@@ -12,6 +12,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component'; // Importe o HttpClientModule
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 
 
 
@@ -31,7 +33,8 @@ import { HomeComponent } from './home/home.component'; // Importe o HttpClientMo
     BrowserAnimationsModule,
     FormsModule,
     RouterModule,
-    HttpClientModule 
+    HttpClientModule,
+    MatSnackBarModule
 
   ],
   providers: [
