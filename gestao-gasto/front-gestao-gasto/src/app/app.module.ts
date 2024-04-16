@@ -13,16 +13,28 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component'; // Importe o HttpClientModule
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-
-
-
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { PrevistoMesAtualComponent } from './previsto-mes-atual/previsto-mes-atual.component';
+import { PrevistoMesAnteriorComponent } from './previsto-mes-anterior/previsto-mes-anterior.component';
+import { PrevistoMesSeguinteComponent } from './previsto-mes-seguinte/previsto-mes-seguinte.component';
+import {MatDividerModule} from '@angular/material/divider';
+import { MatPaginatorModule} from '@angular/material/paginator';
+import {MatSortModule, SortDirection} from '@angular/material/sort';
+import {MatTableModule} from '@angular/material/table';
+import { GastosComponent } from './gastos/gastos.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    PrevistoMesAtualComponent,
+    PrevistoMesAnteriorComponent,
+    PrevistoMesSeguinteComponent,
+    GastosComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +46,15 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     FormsModule,
     RouterModule,
     HttpClientModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatToolbarModule,
+    MatMenuModule,
+    MatIconModule,
+    MatDividerModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatTableModule,
+    
 
   ],
   providers: [

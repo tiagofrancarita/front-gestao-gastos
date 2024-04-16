@@ -1,1 +1,47 @@
-<p>home works!</p>
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+      
+      <span>Cadastros</span>
+      <button mat-icon-button [matMenuTriggerFor]="cadastrosMenu">
+        <mat-icon>arrow_drop_down</mat-icon>
+      </button>
+    
+      <mat-menu #cadastrosMenu="matMenu">
+        <button mat-menu-item routerLink="/cadastros/usuarios">Usuários</button>
+        <button mat-menu-item routerLink="/cadastros/cartao-credito">Cartão de Crédito</button>
+        <button mat-menu-item routerLink="/cadastros/gasto">Gasto</button>
+        <button mat-menu-item routerLink="/cadastros/tipo-gasto">Tipo de Gasto</button>
+      </mat-menu>
+ 
+  
+      <span>Relatórios</span>
+      <button mat-icon-button [matMenuTriggerFor]="relatoriosMenu">
+        <mat-icon>arrow_drop_down</mat-icon>
+      </button>
+      <mat-menu #relatoriosMenu="matMenu">
+        <button mat-menu-item routerLink="/relatorios/usuarios">Usuários</button>
+        <button mat-menu-item routerLink="/relatorios/cartao-credito">Cartão de Crédito</button>
+        <button mat-menu-item routerLink="/relatorios/gasto">Gasto</button>
+        <button mat-menu-item routerLink="/relatorios/tipo-gasto">Tipo de Gasto</button>
+        <button mat-menu-item routerLink="/relatorios/gasto_mes">Gasto x Usuario</button>
+      </mat-menu>
+  
+      <span class="spacer"></span>
+  
+      <button mat-button (click)="logout()">Logout</button>
+
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+
+
+  <div class="dashboard">
+    <app-previsto-mes-anterior [valorPrevistoMesAnterior]="valorPrevistoMesAnterior"></app-previsto-mes-anterior>
+
+    <app-previsto-mes-atual [valorPrevistoMesAtual]="valorPrevistoMesAtual"></app-previsto-mes-atual>
+
+    <app-previsto-mes-seguinte [valorPrevistoMesSeguinte]="valorPrevistoMesSeguinte"></app-previsto-mes-seguinte>
+    
+  </div>
+
+  <app-gastos></app-gastos>

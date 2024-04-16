@@ -1,9 +1,31 @@
-.green_snackBar {
-    background-color: green !important;
-    color: white !important;
-  }
-    
-  .red_snackBar {
-      background-color: red!important;
-      color: white!important;
-    }
+.nav-item {
+  margin-right: 2mm;
+}
+
+.mat-toolbar {
+  background-color: #4008d8; /* Azul claro */
+  font-size: 16px; /* Tamanho da fonte desejado */
+}
+
+.mat-toolbar-row {
+  display: flex;
+  align-items: center;
+}
+
+.mat-toolbar-row {
+  display: flex;
+  align-items: center;
+}
+
+.mat-toolbar-row span,
+.mat-toolbar-row button {
+  font-size: inherit; /* Herda o tamanho de fonte definido na barra de ferramentas */
+}
+
+.dashboard {
+  display: flex;
+  justify-content: space-around;
+  font-size: inherit;
+  align-items: center;
+  
+}
