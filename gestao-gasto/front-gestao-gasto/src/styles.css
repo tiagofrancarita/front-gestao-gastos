@@ -1,0 +1,53 @@
+.green_snackBar {
+    background-color: green !important;
+    color: white !important;
+  }
+    
+  .red_snackBar {
+      background-color: red!important;
+      color: white!important;
+    }
+
+    .login-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+       
+      }
+      
+      .login-box {
+        align-items: center;
+        border: 1px solid black;
+        padding: 40px; /* Ajuste o valor de padding conforme necessário */
+        background-color: transparent; /* Define o fundo como transparente */
+      }
+      
+      .login-form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        padding: 40px;
+      }
+      
+      .mat-form-field {
+        align-items: center;
+        width: 100%;
+        margin-bottom: 80px;
+      }
+      
+      /* Estilos personalizados para o botão de login */
+      .login-button {
+        background-color: #007bff; /* Cor de fundo azul */
+        color: white; /* Cor do texto branco */
+        border: none; /* Remover borda */
+        padding: 10px 20px; /* Adicionar preenchimento */
+        cursor: pointer; /* Mudar cursor ao passar o mouse */
+        border-radius: 4px; /* Adicionar borda arredondada */
+        transition: background-color 0.3s ease; /* Adicionar transição suave de cor de fundo */
+      }
+      
+      .login-button:hover {
+        background-color: #0056b3; /* Cor de fundo azul escuro ao passar o mouse */
+      }

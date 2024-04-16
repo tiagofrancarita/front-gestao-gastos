@@ -1,0 +1,9 @@
+.green_snackBar {
+    background-color: green !important;
+    color: white !important;
+  }
+    
+  .red_snackBar {
+      background-color: red!important;
+      color: white!important;
+    }
