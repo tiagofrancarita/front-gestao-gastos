@@ -1,0 +1,30 @@
+/* Estilos para o container do login */
+.login-container {
+  display: flex;
+  justify-content: center; /* Centraliza horizontalmente */
+  align-items: center; /* Centraliza verticalmente */
+  height: 100vh; /* Define a altura para ocupar toda a altura da tela */
+}
+
+/* Estilos para a caixa de login */
+.login-box {
+  width: 300px; /* Largura da caixa de login */
+}
+
+/* Estilos para o formulário de login */
+.login-form {
+  display: flex;
+  flex-direction: column; /* Alinha os campos verticalmente */
+}
+
+/* Estilos para o botão de login */
+.login-button {
+  width: 100%; /* Faz o botão ocupar toda a largura do contêiner */
+}
+
+/* Estilos para a caixa de mensagem de sucesso */
+.success-message {
+  position: fixed; /* Posicionamento fixo na tela */
+  top: 20px; /* Distância do topo */
+  right: 20px; /* Distância da direita */
+}
