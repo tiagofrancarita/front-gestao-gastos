@@ -25,4 +25,7 @@
 .dashboard {
   display: flex;
   justify-content: space-around;
+  font-size: inherit;
+  align-items: center;
+  
 }

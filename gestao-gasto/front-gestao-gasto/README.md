@@ -1,27 +1,43 @@
-# FrontGestaoGasto
+# Sistema de Gerenciamento de Gastos
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.4.
+Este é um sistema de gerenciamento de gastos desenvolvido com Angular no frontend, Java Spring Boot no backend e MySQL como banco de dados.
 
-## Development server
+## Tecnologias Utilizadas
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- Angular 12
+- Angular Material
+- Java Spring Boot 2.5.4
+- MySQL
 
-## Code scaffolding
+## Configuração
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Frontend (Angular)
 
-## Build
+1. Certifique-se de ter o Node.js instalado em sua máquina.
+2. Instale o Angular CLI globalmente via npm: `npm install -g @angular/cli`.
+3. Clone este repositório.
+4. Navegue até o diretório do frontend: `cd frontend-gestao-gastos`.
+5. Instale as dependências do projeto: `npm install`.
+6. Inicie o servidor de desenvolvimento: `ng serve`.
+7. Abra o navegador e acesse `http://localhost:4200`.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### Backend (Java Spring Boot)
 
-## Running unit tests
+1. Certifique-se de ter o JDK e o Maven instalados em sua máquina.
+2. Clone este repositório.
+3. Navegue até o diretório do backend: `cd backend-gestao-gastos`.
+4. Configure as propriedades do banco de dados MySQL em `src/main/resources/application.properties`.
+5. Compile o projeto: `mvn clean install`.
+6. Execute o projeto: `mvn spring-boot:run`.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Funcionalidades
 
-## Running end-to-end tests
+- Autenticação de usuário.
+- Cadastro, visualização, edição e exclusão de usuários.
+- Gerenciamento de gastos.
+- Relatórios de gastos por usuário.
+- Troca de senha do usuário.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Licença
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Este projeto está licenciado sob a [MIT License](LICENSE).
