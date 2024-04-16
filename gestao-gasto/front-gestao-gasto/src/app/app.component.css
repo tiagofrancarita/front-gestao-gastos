@@ -1,9 +1,16 @@
-.green_snackBar {
+.green-snackBar {
     background-color: green !important;
     color: white !important;
   }
     
-  .red_snackBar {
+  .red-snackBar {
       background-color: red!important;
       color: white!important;
+    }
+
+    .success-message {
+      object-position: top-right;
+      position: top-right;
+      top: 20px;
+      right: 20px;
     }

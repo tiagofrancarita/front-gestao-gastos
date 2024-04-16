@@ -1,0 +1,15 @@
+.dashboard-card {
+    border-radius: 10px;
+    background-color: #e0e0e0; /* Cor de background dos dashboards */
+    margin-bottom: 5mm; /* Espaçamento entre os dashboards */
+    margin-top: 10mm;
+    background-color: rgb(233, 236, 17);
+  }
+  
+  .dashboard-value {
+    font-size: 24px; /* Tamanho da fonte do valor */
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 5mm; /* Espaçamento entre os dashboards */
+    margin-top: 2mm; /* Distância de 2mm do topo */
+  }
