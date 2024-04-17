@@ -1,0 +1,191 @@
+<form [formGroup]="userForm" (ngSubmit)="submitForm()">
+
+  <div class="form-row">
+    <mat-form-field class="form-field">
+      <input matInput placeholder="ID" formControlName="id">
+      <mat-error *ngIf="userForm.get('id')?.invalid && userForm.get('id')?.touched">
+        ID é obrigatório
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+      <input matInput placeholder="Login" formControlName="login">
+      <mat-error *ngIf="userForm.get('login')?.invalid && userForm.get('login')?.touched">
+        Login é obrigatório
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+      <input matInput placeholder="Nome" formControlName="nome">
+      <mat-error *ngIf="userForm.get('nome')?.invalid && userForm.get('nome')?.touched">
+        Nome é obrigatório
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+      <input matInput type="email" placeholder="E-mail" formControlName="email">
+      <mat-error *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched">
+        E-mail inválido
+      </mat-error>
+    </mat-form-field>
+  
+    <mat-form-field class="form-field">
+      <input matInput type="password" placeholder="Senha" formControlName="senha">
+      <mat-error *ngIf="userForm.get('senha')?.invalid && userForm.get('senha')?.touched">
+        Senha é obrigatória
+      </mat-error>
+    </mat-form-field>
+  
+    <mat-form-field class="form-field">
+      <input matInput type="password" placeholder="Confirmação de Senha" formControlName="confirmaSenha">
+      <mat-error *ngIf="userForm.get('confirmaSenha')?.invalid && userForm.get('confirmaSenha')?.touched">
+        Senhas não conferem
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+        <mat-label>Status</mat-label>
+        <mat-select formControlName="status">
+          <mat-option value="ativo">Ativo</mat-option>
+          <mat-option value="inativo">Inativo</mat-option>
+        </mat-select>
+        <mat-error *ngIf="userForm.get('status')?.invalid && userForm.get('status')?.touched">
+          Status é obrigatório
+        </mat-error>
+      </mat-form-field>
+    
+      <mat-form-field class="form-field">
+        <mat-label>Perfil (Role)</mat-label>
+        <mat-select formControlName="perfil">
+          <mat-option value="admin">Admin</mat-option>
+          <mat-option value="usuario">Usuário</mat-option>
+        </mat-select>
+        <mat-error *ngIf="userForm.get('perfil')?.invalid && userForm.get('perfil')?.touched">
+          Perfil é obrigatório
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form-field">
+        <input matInput [matDatepicker]="dataCadastroPicker" placeholder="Data de Cadastro" formControlName="dataCadastro">
+        <mat-datepicker-toggle matSuffix [for]="dataCadastroPicker"></mat-datepicker-toggle>
+        <mat-datepicker #dataCadastroPicker></mat-datepicker>
+        <mat-error *ngIf="userForm.get('dataCadastro')?.invalid && userForm.get('dataCadastro')?.touched">
+          Data de cadastro é obrigatória
+        </mat-error>
+      </mat-form-field>
+      
+      <mat-form-field class="form-field">
+        <input matInput [matDatepicker]="DataDesbloqueioPicker" placeholder="Data de Desbloqueio" formControlName="dataDesbloqueio">
+        <mat-datepicker-toggle matSuffix [for]="DataDesbloqueioPicker"></mat-datepicker-toggle>
+        <mat-datepicker #DataDesbloqueioPicker></mat-datepicker>
+        <mat-error *ngIf="userForm.get('dataDesbloqueio')?.invalid && userForm.get('dataDesbloqueio')?.touched">
+          Data de desbloqueio é obrigatória
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form-field">
+        <input matInput [matDatepicker]="dataExpiracaoSenhaPicker" placeholder="Data de expiração senha" formControlName="dataExpiracaoSenha">
+        <mat-datepicker-toggle matSuffix [for]="dataExpiracaoSenhaPicker"></mat-datepicker-toggle>
+        <mat-datepicker #dataExpiracaoSenhaPicker></mat-datepicker>
+        <mat-error *ngIf="userForm.get('dataExpiracaoSenha')?.invalid && userForm.get('dataExpiracaoSenha')?.touched">
+          Data de expiração de senha é obrigatória
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form-field">
+        <input matInput [matDatepicker]="dataInativacaoPiker" placeholder="Data de Inativação" formControlName="dataInativacao">
+        <mat-datepicker-toggle matSuffix [for]="dataInativacaoPiker"></mat-datepicker-toggle>
+        <mat-datepicker #dataInativacaoPiker></mat-datepicker>
+        <mat-error *ngIf="userForm.get('dataInativacao')?.invalid && userForm.get('dataInativacao')?.touched">
+          Data de inativação é obrigatória
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form-field">
+        <input matInput [matDatepicker]="dataReativacaoPicker" placeholder="Data de reativação" formControlName="dataReativacao">
+        <mat-datepicker-toggle matSuffix [for]="dataReativacaoPicker"></mat-datepicker-toggle>
+        <mat-datepicker #dataReativacaoPicker></mat-datepicker>
+        <mat-error *ngIf="userForm.get('dataReativacao')?.invalid && userForm.get('dataReativacao')?.touched">
+          Data de desbloqueio é obrigatória
+        </mat-error>
+      </mat-form-field>
+    </div>
+  
+    <!-- Tabela para mostrar os usuários cadastrados -->
+  <mat-table [dataSource]="usuarios" class="mat-elevation-z8">
+    <!-- Colunas da tabela -->
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+      <mat-cell *matCellDef="let usuarios">{{ usuarios.id }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="login">
+      <mat-header-cell *matHeaderCellDef>Login</mat-header-cell>
+      <mat-cell *matCellDef="let user">{{ user.login }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="nome">
+      <mat-header-cell *matHeaderCellDef>Nome</mat-header-cell>
+      <mat-cell *matCellDef="let user">{{ user.nome }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <mat-header-cell *matHeaderCellDef>E-mail</mat-header-cell>
+      <mat-cell *matCellDef="let user">{{ user.email }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="senha">
+      <mat-header-cell *matHeaderCellDef>Senha</mat-header-cell>
+      <mat-cell *matCellDef="let user">{{ user.senha }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="confirmaSenha">
+      <mat-header-cell *matHeaderCellDef>Confirma Senha</mat-header-cell>
+      <mat-cell *matCellDef="let user">{{ user.confirmaSenha }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
+      <mat-cell *matCellDef="let user">{{ user.status }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="dataCadastro">
+      <mat-header-cell *matHeaderCellDef>Data Cadastro</mat-header-cell>
+      <mat-cell *matCellDef="let user">{{ user.dataCadastro }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="dataDesbloqueio">
+      <mat-header-cell *matHeaderCellDef>Data Desbloqueio</mat-header-cell>
+      <mat-cell *matCellDef="let user">{{ user.dataDesbloqueio }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="dataExpiracaoSenha">
+      <mat-header-cell *matHeaderCellDef>Data Exp Senha</mat-header-cell>
+      <mat-cell *matCellDef="let user">{{ user.dataExpiracaoSenha }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="dataInativacao">
+      <mat-header-cell *matHeaderCellDef>Data Inativação</mat-header-cell>
+      <mat-cell *matCellDef="let user">{{ user.dataInativacao }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="dataReativacao">
+      <mat-header-cell *matHeaderCellDef>Data Reativacao</mat-header-cell>
+      <mat-cell *matCellDef="let user">{{ user.dataReativacao }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="perfil">
+      <mat-header-cell *matHeaderCellDef>Perfil</mat-header-cell>
+      <mat-cell *matCellDef="let user">{{ user.dataReativacao }}</mat-cell>
+    </ng-container>
+
+    <!-- Adicione mais colunas conforme necessário -->
+
+    <!-- Linhas de dados -->
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+  
+    <button mat-raised-button color="primary" type="submit">Salvar</button>
+    <button mat-raised-button color="primary" type="submit">Cancelar</button>
+  </form>
