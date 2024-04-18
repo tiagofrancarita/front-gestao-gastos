@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UsuariosServiceService } from '../usuarios-service.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { AuthService } from '../auth.service';
+import { DatePipe } from '@angular/common'; // Importe o DatePipe
+
 
 
 @Component({
@@ -12,51 +14,81 @@ import { AuthService } from '../auth.service';
 })
 export class CadastroUsuarioComponent implements OnInit {
 
-  usuarios!: any[]; // Declaração da propriedade 'usuarios'
-
+  usuarios!: any[]; // Declaração da propriedade 'usuarios' para armazenar os dados recebidos do backend
   userForm!: FormGroup;
-  displayedColumns: string[] = ['id', 'login', 'nome', 'email', 'senha','confirmaSenha','status','perfil','dataCadastro','dataDesbloqueio','dataExpiracaoSenha','dataInativacao','dataReativacao']; 
+  displayedColumns: string[] = ['id', 'login', 'nome', 'email', 'senha','role','dataCadastro','dataDesbloqueio','dataBloqueio','dataExpiracaoSenha','dataInativacao']; 
   dataSource = new MatTableDataSource<any>(); // Certifique-se de que o tipo corresponda aos dados retornados do backend
   token: string = ''; // Adicione uma variável para armazenar o token de autenticação
+  currentDateFormatted: string = ''; // Variável para armazenar a data atual formatada
 
 
-  constructor(private authService: AuthService, private formBuilder: FormBuilder, private userService: UsuariosServiceService) { }
+
+  constructor(
+                private authService: AuthService,
+                private formBuilder: FormBuilder, 
+                private userService: UsuariosServiceService,
+                private datePipe: DatePipe
+              ) { }
 
 
   ngOnInit(): void {
     this.userForm = this.formBuilder.group({
-      id: ['', Validators.required],
+      id: [''],
       login: ['', Validators.required],
       nome: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       senha: ['', [Validators.required, Validators.minLength(6)]],
       confirmaSenha: ['', Validators.required],
-      status: ['', Validators.required],
-      perfil: ['', Validators.required],
+      role: ['', Validators.required],
       dataCadastro: ['', Validators.required],
       dataDesbloqueio: [''],
-      dataExpiracaoSenha: ['', Validators.required],
+      dataBloqueio: [''],
+      dataExpiracaoSenha: [''],
       dataInativacao: [''],
       dataReativacao: [''] // Corrigido o nome da propriedade
     }, { validator: this.passwordMatchValidator });
+
+      // Obtenha a data atual formatada
+    const currentDate = new Date();
+    const formattedDate = this.datePipe.transform(currentDate, 'yyyy-MM-ddTHH:mm:ss.SSS');
+
+    this.userForm.patchValue({
+      dataCadastro: formattedDate
+    });
 
     this.fetchUsuarios(); // Chama a função para buscar usuários do backend
   }
 
   submitForm() {
     if (this.userForm.valid) {
-      // Faça login e, em seguida, busque usuários
-      this.userService.login('seuUsuario', 'suaSenha').subscribe(
-        (data) => {
-          this.token = data.token; // Supondo que o token seja retornado na resposta
-          this.fetchUsuarios();
-        },
-        (error) => {
-          console.error('Erro ao fazer login:', error);
-        }
-      );
-    } else {
-      // Exiba uma mensagem de erro ou trate de outra forma
+      // Remover o sufixo "Z" da data de cadastro, se existir
+      let dataCadastro = this.userForm.get('dataCadastro')?.value;
+      if (dataCadastro && typeof dataCadastro === 'string' && dataCadastro.endsWith('Z')) {
+        dataCadastro = dataCadastro.slice(0, -1);
+        this.userForm.get('dataCadastro')?.setValue(dataCadastro);
+      }
+
+      const novoUsuario = this.userForm.value;
+
+      // Obtém o token de autenticação do serviço AuthService
+      const token = this.authService.getToken();
+
+      // Verifica se o token está presente
+      if (token) {
+        // Envie os dados para o backend para salvar no banco
+        this.userService.cadastrarUsuario(novoUsuario, token).subscribe(
+          (response) => {
+            console.log('Usuário cadastrado com sucesso:', response);
+            // Atualize a lista de usuários após o cadastro bem-sucedido, se necessário
+            this.fetchUsuarios();
+          },
+          (error) => {
+            console.error('Erro ao cadastrar usuário:', error);
+          }
+        );
+      } else {
+        console.error('Token de autenticação não encontrado.');
+      }
     }
   }
 

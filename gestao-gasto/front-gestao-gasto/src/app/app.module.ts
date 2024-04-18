@@ -30,6 +30,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { CommonModule, DatePipe } from '@angular/common';
+
+
 
 
 
@@ -66,10 +69,12 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatFormFieldModule,
     MatSelectModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    CommonModule
   ],
   providers: [
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })
