@@ -19,11 +19,21 @@ import { MatIconModule } from '@angular/material/icon';
 import { PrevistoMesAtualComponent } from './previsto-mes-atual/previsto-mes-atual.component';
 import { PrevistoMesAnteriorComponent } from './previsto-mes-anterior/previsto-mes-anterior.component';
 import { PrevistoMesSeguinteComponent } from './previsto-mes-seguinte/previsto-mes-seguinte.component';
-import {MatDividerModule} from '@angular/material/divider';
+import { MatDividerModule } from '@angular/material/divider';
 import { MatPaginatorModule} from '@angular/material/paginator';
-import {MatSortModule, SortDirection} from '@angular/material/sort';
-import {MatTableModule} from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
 import { GastosComponent } from './gastos/gastos.component';
+import { CadastroUsuarioComponent } from './cadastro-usuario/cadastro-usuario.component';
+import { ReactiveFormsModule } from '@angular/forms'; // Importe ReactiveFormsModule para usar formulários reativos
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { CommonModule, DatePipe } from '@angular/common';
+
+
+
 
 
 @NgModule({
@@ -34,7 +44,8 @@ import { GastosComponent } from './gastos/gastos.component';
     PrevistoMesAtualComponent,
     PrevistoMesAnteriorComponent,
     PrevistoMesSeguinteComponent,
-    GastosComponent
+    GastosComponent,
+    CadastroUsuarioComponent
   ],
   imports: [
     BrowserModule,
@@ -54,11 +65,16 @@ import { GastosComponent } from './gastos/gastos.component';
     MatPaginatorModule,
     MatSortModule,
     MatTableModule,
-    
-
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    CommonModule
   ],
   providers: [
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })

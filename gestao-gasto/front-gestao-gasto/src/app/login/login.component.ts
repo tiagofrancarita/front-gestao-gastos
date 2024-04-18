@@ -23,6 +23,7 @@ export class LoginComponent {
       (response) => {
         // Se o login for bem-sucedido, redirecione para outra página
         if (response.token) {
+          this.authService.setToken(response.token); // Armazena o token no serviço de autenticação
           this.router.navigate(['/home']);
           this.successMessage = 'Login com sucesso';
           this.openSnackBar(this.successMessage, 'green-snackbar');

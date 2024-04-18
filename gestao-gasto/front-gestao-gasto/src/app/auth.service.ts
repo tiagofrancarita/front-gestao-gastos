@@ -8,6 +8,9 @@ import { HttpHeaders } from '@angular/common/http';
 })
 export class AuthService {
 
+  private token: string | null = null;
+
+
   private isAuthenticated: boolean = false;
 
 
@@ -15,8 +18,23 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
+  setToken(token: string): void {
+    this.token = token;
+  }
+
+  getToken(): string | null {
+    return this.token;
+  }
+
+  
+
+
   login(login: string, senha: string): Observable<any> {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json',
+     'Acess-Control-Allow-Origin': '*',
+     'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, PUT, PATCH, DELETE',
+     'Access-Control-Allow-Headers': 'Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers'
+    });
     const body = { login, senha };
     return this.http.post<any>(this.loginUrl, body, { headers });
     this.isAuthenticated = true;
