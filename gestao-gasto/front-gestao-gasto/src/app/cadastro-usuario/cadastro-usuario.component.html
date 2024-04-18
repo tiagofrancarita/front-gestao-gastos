@@ -2,7 +2,7 @@
 
   <div class="form-row">
     <mat-form-field class="form-field">
-      <input matInput placeholder="ID" formControlName="id">
+      <input matInput placeholder="Id" formControlName="id" [disabled]="true">
       <mat-error *ngIf="userForm.get('id')?.invalid && userForm.get('id')?.touched">
         ID é obrigatório
       </mat-error>
@@ -42,25 +42,14 @@
         Senhas não conferem
       </mat-error>
     </mat-form-field>
-
-    <mat-form-field class="form-field">
-        <mat-label>Status</mat-label>
-        <mat-select formControlName="status">
-          <mat-option value="ativo">Ativo</mat-option>
-          <mat-option value="inativo">Inativo</mat-option>
-        </mat-select>
-        <mat-error *ngIf="userForm.get('status')?.invalid && userForm.get('status')?.touched">
-          Status é obrigatório
-        </mat-error>
-      </mat-form-field>
     
       <mat-form-field class="form-field">
-        <mat-label>Perfil (Role)</mat-label>
-        <mat-select formControlName="perfil">
-          <mat-option value="admin">Admin</mat-option>
-          <mat-option value="usuario">Usuário</mat-option>
+        <mat-label>Role</mat-label>
+        <mat-select formControlName="role">
+          <mat-option value="ADMIN">ADMIN</mat-option>
+          <mat-option value="USER">USER</mat-option>
         </mat-select>
-        <mat-error *ngIf="userForm.get('perfil')?.invalid && userForm.get('perfil')?.touched">
+        <mat-error *ngIf="userForm.get('role')?.invalid && userForm.get('role')?.touched">
           Perfil é obrigatório
         </mat-error>
       </mat-form-field>
@@ -73,22 +62,20 @@
           Data de cadastro é obrigatória
         </mat-error>
       </mat-form-field>
+
+      <mat-form-field class="form-field">
+        <input matInput [matDatepicker]="dataBloqueioPicker" placeholder="Data de Bloqueio" formControlName="dataBloqueio">
+        <mat-datepicker-toggle matSuffix [for]="dataBloqueioPicker"></mat-datepicker-toggle>
+        <mat-datepicker #dataBloqueioPicker></mat-datepicker>
+        <mat-error *ngIf="userForm.get('dataBloqueio')?.invalid && userForm.get('dataBloqueio')?.touched">
+        </mat-error>
+      </mat-form-field>
       
       <mat-form-field class="form-field">
         <input matInput [matDatepicker]="DataDesbloqueioPicker" placeholder="Data de Desbloqueio" formControlName="dataDesbloqueio">
         <mat-datepicker-toggle matSuffix [for]="DataDesbloqueioPicker"></mat-datepicker-toggle>
         <mat-datepicker #DataDesbloqueioPicker></mat-datepicker>
         <mat-error *ngIf="userForm.get('dataDesbloqueio')?.invalid && userForm.get('dataDesbloqueio')?.touched">
-          Data de desbloqueio é obrigatória
-        </mat-error>
-      </mat-form-field>
-
-      <mat-form-field class="form-field">
-        <input matInput [matDatepicker]="dataExpiracaoSenhaPicker" placeholder="Data de expiração senha" formControlName="dataExpiracaoSenha">
-        <mat-datepicker-toggle matSuffix [for]="dataExpiracaoSenhaPicker"></mat-datepicker-toggle>
-        <mat-datepicker #dataExpiracaoSenhaPicker></mat-datepicker>
-        <mat-error *ngIf="userForm.get('dataExpiracaoSenha')?.invalid && userForm.get('dataExpiracaoSenha')?.touched">
-          Data de expiração de senha é obrigatória
         </mat-error>
       </mat-form-field>
 
@@ -97,7 +84,6 @@
         <mat-datepicker-toggle matSuffix [for]="dataInativacaoPiker"></mat-datepicker-toggle>
         <mat-datepicker #dataInativacaoPiker></mat-datepicker>
         <mat-error *ngIf="userForm.get('dataInativacao')?.invalid && userForm.get('dataInativacao')?.touched">
-          Data de inativação é obrigatória
         </mat-error>
       </mat-form-field>
 
@@ -106,9 +92,20 @@
         <mat-datepicker-toggle matSuffix [for]="dataReativacaoPicker"></mat-datepicker-toggle>
         <mat-datepicker #dataReativacaoPicker></mat-datepicker>
         <mat-error *ngIf="userForm.get('dataReativacao')?.invalid && userForm.get('dataReativacao')?.touched">
-          Data de desbloqueio é obrigatória
         </mat-error>
       </mat-form-field>
+
+      <mat-form-field class="form-field">
+        <input matInput [matDatepicker]="dataExpiracaoSenhaPicker" placeholder="Data de expiração senha" formControlName="dataExpiracaoSenha">
+        <mat-datepicker-toggle matSuffix [for]="dataExpiracaoSenhaPicker"></mat-datepicker-toggle>
+        <mat-datepicker #dataExpiracaoSenhaPicker></mat-datepicker>
+        <mat-error *ngIf="userForm.get('dataExpiracaoSenha')?.invalid && userForm.get('dataExpiracaoSenha')?.touched">
+        </mat-error>
+      </mat-form-field>
+
+
+
+
     </div>
   
     <!-- Tabela para mostrar os usuários cadastrados -->
@@ -139,14 +136,9 @@
       <mat-cell *matCellDef="let user">{{ user.senha }}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="confirmaSenha">
-      <mat-header-cell *matHeaderCellDef>Confirma Senha</mat-header-cell>
-      <mat-cell *matCellDef="let user">{{ user.confirmaSenha }}</mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="status">
-      <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
-      <mat-cell *matCellDef="let user">{{ user.status }}</mat-cell>
+    <ng-container matColumnDef="role">
+      <mat-header-cell *matHeaderCellDef>Perfil</mat-header-cell>
+      <mat-cell *matCellDef="let user">{{ user.role }}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="dataCadastro">
@@ -154,14 +146,14 @@
       <mat-cell *matCellDef="let user">{{ user.dataCadastro }}</mat-cell>
     </ng-container>
 
+    <ng-container matColumnDef="dataBloqueio">
+      <mat-header-cell *matHeaderCellDef>Data Bloqueio</mat-header-cell>
+      <mat-cell *matCellDef="let user">{{ user.dataBloqueio }}</mat-cell>
+    </ng-container>
+
     <ng-container matColumnDef="dataDesbloqueio">
       <mat-header-cell *matHeaderCellDef>Data Desbloqueio</mat-header-cell>
       <mat-cell *matCellDef="let user">{{ user.dataDesbloqueio }}</mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="dataExpiracaoSenha">
-      <mat-header-cell *matHeaderCellDef>Data Exp Senha</mat-header-cell>
-      <mat-cell *matCellDef="let user">{{ user.dataExpiracaoSenha }}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="dataInativacao">
@@ -174,9 +166,9 @@
       <mat-cell *matCellDef="let user">{{ user.dataReativacao }}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="perfil">
-      <mat-header-cell *matHeaderCellDef>Perfil</mat-header-cell>
-      <mat-cell *matCellDef="let user">{{ user.dataReativacao }}</mat-cell>
+    <ng-container matColumnDef="dataExpiracaoSenha">
+      <mat-header-cell *matHeaderCellDef>Data Exp Senha</mat-header-cell>
+      <mat-cell *matCellDef="let user">{{ user.dataExpiracaoSenha }}</mat-cell>
     </ng-container>
 
     <!-- Adicione mais colunas conforme necessário -->
@@ -186,6 +178,6 @@
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
   
-    <button mat-raised-button color="primary" type="submit">Salvar</button>
-    <button mat-raised-button color="primary" type="submit">Cancelar</button>
+  <button mat-raised-button color="primary" (click)="submitForm()">Salvar</button>
+  <button mat-raised-button color="primary" type="submit">Cancelar</button>
   </form>

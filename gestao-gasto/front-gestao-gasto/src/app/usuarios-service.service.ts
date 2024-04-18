@@ -13,6 +13,16 @@ export class UsuariosServiceService {
 
   constructor(private http: HttpClient) { }
 
+
+    // Método para cadastrar um novo usuário
+    cadastrarUsuario(novoUsuario: any, token: string): Observable<any> {
+      // Adicione o token ao cabeçalho da requisição
+      const headers = { 'Authorization': `Bearer ${token}` };
+      // Realize a requisição POST para o backend
+      return this.http.post<any>('http://localhost:8080/v1/usuarios/salvarUsuario', novoUsuario, { headers });
+      
+    }
+
   login(username: string, password: string): Observable<any> {
     const credentials = { username, password };
     return this.http.post<any>('http://localhost:8080/v1/auth/logar', credentials);
